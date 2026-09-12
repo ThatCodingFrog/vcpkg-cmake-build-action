@@ -106,3 +106,11 @@ jobs:
         run: ctest --build-config Release
         working-directory: build
         continue-on-error: true
+
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os }}-${{ matrix.triplet }}
+          path: build/
+          retention-days: 30
