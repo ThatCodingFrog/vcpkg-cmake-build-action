@@ -79,7 +79,7 @@ jobs:
         run: .\vcpkg\bootstrap-vcpkg.bat
 
       - name: Install vcpkg dependencies
-        run: ./vcpkg/vcpkg install --triplet=${{ matrix.triplet }} --manifest-root=.
+        run: ./vcpkg/vcpkg install --triplet=${{ matrix.triplet }}
         shell: bash
         env:
           VCPKG_ROOT: ${{ github.workspace }}/vcpkg
