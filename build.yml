@@ -1,10 +1,8 @@
-name: vcpkg CMake Build
+name: Build NESXUS
 
 on:
   push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
 
 jobs:
   build:
@@ -81,10 +79,7 @@ jobs:
         run: .\vcpkg\bootstrap-vcpkg.bat
 
       - name: Install vcpkg dependencies
-        run: |
-          ./vcpkg/vcpkg install \
-            --triplet=${{ matrix.triplet }} \
-            --manifest-root=.
+        run: ./vcpkg/vcpkg install --triplet=${{ matrix.triplet }} --manifest-root=.
         shell: bash
         env:
           VCPKG_ROOT: ${{ github.workspace }}/vcpkg
