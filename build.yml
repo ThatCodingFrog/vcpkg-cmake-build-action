@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -29,6 +29,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
+            autoconf \
+            autoconf-archive \
+            automake \
+            libtool \
+            libltdl-dev \
             build-essential \
             cmake \
             git \
@@ -56,7 +61,7 @@ jobs:
         run: cmake --version
 
       - name: Cache vcpkg
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: vcpkg
           key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json') }}
@@ -91,7 +96,7 @@ jobs:
         run: |
           cmake -B build \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+            "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         shell: bash
 
       - name: Build
