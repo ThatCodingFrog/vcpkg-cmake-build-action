@@ -1,4 +1,4 @@
-name: Build NESXUS
+name: Build <project-name>
 
 on:
   push:
